@@ -1,0 +1,92 @@
+<ng-template #yearTemplate>
+  <year
+    #yearInput
+    [settings]="settings"
+    [showBackground]="
+      settings.partOrder.indexOf('y') === 0 &&
+      (showPanel || dateTimePanelShowed)
+    "
+    [type]="type"
+    [(value)]="year"
+    (keydown)="yearOnKeyDown($event)"
+  ></year>
+</ng-template>
+
+<ng-template #monthTemplate>
+  <month
+    #monthInput
+    [settings]="settings"
+    [showBackground]="
+      settings.partOrder.indexOf('m') === 0 &&
+      (showPanel || dateTimePanelShowed)
+    "
+    [type]="type"
+    [(value)]="month"
+    (keydown)="monthOnKeyDown($event)"
+  ></month>
+</ng-template>
+
+<ng-template #dayTemplate>
+  <day
+    #dayInput
+    [settings]="settings"
+    [showBackground]="
+      settings.partOrder.indexOf('d') === 0 &&
+      (showPanel || dateTimePanelShowed)
+    "
+    [type]="type"
+    [(value)]="day"
+    (keydown)="dayOnKeyDown($event)"
+  ></day>
+</ng-template>
+
+<div
+  #dateContainer
+  class="container"
+  [style.width]="type === 'date' ? '115px' : '90px'"
+  [style.border]="type === 'date' ? '' : 'none'"
+  [style.outline]="type === 'date' ? '' : 'none'"
+>
+  <div *ngIf="settings.partOrder === 'd m y'" class="parts">
+    <ng-container *ngTemplateOutlet="dayTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+  </div>
+  <div *ngIf="settings.partOrder === 'm d y'" class="parts">
+    <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="dayTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+  </div>
+  <div *ngIf="settings.partOrder === 'y m d'" class="parts">
+    <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="dayTemplate"></ng-container>
+  </div>
+  <div *ngIf="settings.partOrder === 'y d m'" class="parts">
+    <ng-container *ngTemplateOutlet="yearTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="dayTemplate"></ng-container>
+    <div class="separator">{{ settings.partSeparator }}</div>
+    <ng-container *ngTemplateOutlet="monthTemplate"></ng-container>
+  </div>
+  <button
+    *ngIf="type === 'date'"
+    tabindex="-1"
+    (click)="showPanel = !showPanel; cd.detectChanges()"
+  ></button>
+</div>
+<date-panel
+  *ngIf="showPanel"
+  [type]="type"
+  [settings]="settings"
+  [show]="value"
+  [dateTimePanelShowed]="dateTimePanelShowed"
+  (hidePanel)="hidePanel()"
+  (dateChange)="value = $event; cd.detectChanges()"
+></date-panel>

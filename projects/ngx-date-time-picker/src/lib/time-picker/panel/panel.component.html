@@ -1,0 +1,57 @@
+<div #panel class="panel" [class.date-time]="type === 'date-time'">
+  <div #hoursContainer class="items noselect">
+    <div
+      *ngFor="let hour of hours"
+      [class.selected]="hour === selectedHour"
+      [class.overed]="hourOvered === hour && hourOvered !== selectedHour"
+      (click)="selectedHour = hour; setTime()"
+      (mouseover)="hourOvered = hour; cd.detectChanges()"
+      (mouseout)="hourOvered = -1; cd.detectChanges()"
+    >
+      {{ hour | number: "2.0-0" }}
+    </div>
+  </div>
+  <div class="separator"></div>
+  <div #minutesContainer class="items noselect">
+    <div
+      *ngFor="let minute of minutes"
+      [class.selected]="minute === selectedMinute"
+      [class.overed]="
+        minuteOvered === minute && minuteOvered !== selectedMinute
+      "
+      (click)="selectedMinute = minute; setTime()"
+      (mouseover)="minuteOvered = minute; cd.detectChanges()"
+      (mouseout)="minuteOvered = -1; cd.detectChanges()"
+    >
+      {{ minute | number: "2.0-0" }}
+    </div>
+  </div>
+  <div *ngIf="showSeconds" class="separator"></div>
+  <div #secondsContainer *ngIf="showSeconds" class="items noselect">
+    <div
+      *ngFor="let second of seconds"
+      [class.selected]="second === selectedSecond"
+      [class.overed]="
+        secondOvered === second && secondOvered !== selectedSecond
+      "
+      (click)="selectedSecond = second; setTime()"
+      (mouseover)="secondOvered = second; cd.detectChanges()"
+      (mouseout)="secondOvered = -1; cd.detectChanges()"
+    >
+      {{ second | number: "2.0-0" }}
+    </div>
+  </div>
+  <div *ngIf="clockType === 12" class="separator"></div>
+  <div #clockContainer *ngIf="clockType === 12" class="items noselect">
+    <div
+      *ngFor="let type of timeTypes"
+      [class.selected]="type === selectedType"
+      [class.overed]="typeOvered === type && typeOvered !== selectedType"
+      (click)="selectedType = type; setTime()"
+      (mouseover)="typeOvered = type; cd.detectChanges()"
+      (mouseout)="typeOvered = ''; cd.detectChanges()"
+    >
+      {{ type }}
+    </div>
+  </div>
+</div>

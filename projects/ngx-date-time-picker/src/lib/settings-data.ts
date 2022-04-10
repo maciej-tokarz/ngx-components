@@ -1,0 +1,198 @@
+import { ISettings } from './interfaces';
+
+// 0 Sunday
+// 6 Saturday
+// 1 Monday
+
+const en: ISettings = {
+  locale: 'en-US',
+  firstWeekDay: 0,
+  partOrder: 'm d y',
+  partSeparator: '/',
+  placeholder: {
+    year: 'yyyy',
+    month: 'mm',
+    day: 'dd',
+  },
+  translations: {
+    weekDays: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+    monthsLong: [
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December',
+    ],
+    monthsShort: [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ],
+    today: 'Today',
+    clear: 'Clear',
+  },
+};
+
+const bg: ISettings = {
+  locale: 'bg-BG',
+  firstWeekDay: 0,
+  partOrder: 'd m y',
+  partSeparator: '.',
+  placeholder: {
+    year: 'ГГГГ',
+    month: 'MM',
+    day: 'дд',
+  },
+  translations: {
+    weekDays: ['нд', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'],
+    monthsLong: [
+      'януари',
+      'февруари',
+      'март',
+      'април',
+      'май',
+      'юни',
+      'юли',
+      'август',
+      'септември',
+      'октомври',
+      'ноември',
+      'декември',
+    ],
+    monthsShort: [
+      'яну',
+      'фев',
+      'мар',
+      'апр',
+      'май',
+      'юни',
+      'юли',
+      'авг',
+      'сеп',
+      'окт',
+      'ное',
+      'дек',
+    ],
+    today: 'Днес',
+    clear: 'Изчистване',
+  },
+};
+
+const ar: ISettings = {
+  locale: 'ar-AE',
+  firstWeekDay: 6,
+  partOrder: 'd m y',
+  partSeparator: '/',
+  placeholder: {
+    year: '????',
+    month: '??',
+    day: '??',
+  },
+  translations: {
+    weekDays: ['أحد', 'إثنين', 'ثلاثاء', 'أربعاء', 'خميس', 'جمعة', 'سبت'],
+    monthsLong: [
+      'يناير',
+      'فبراير',
+      'مارس',
+      'أبريل',
+      'مايو',
+      'يونيو',
+      'يوليو',
+      'أغسطس',
+      'سبتمبر',
+      'أكتوبر',
+      'نوفمبر',
+      'ديسمبر',
+    ],
+    monthsShort: [
+      'يناير',
+      'فبراير',
+      'مارس',
+      'أبريل',
+      'مايو',
+      'يونيو',
+      'يوليو',
+      'أغسطس',
+      'سبتمبر',
+      'أكتوبر',
+      'نوفمبر',
+      'ديسمبر',
+    ],
+    today: 'اليوم',
+    clear: 'صافي',
+  },
+};
+
+const pl: ISettings = {
+  locale: 'pl-PL',
+  firstWeekDay: 1,
+  partOrder: 'd m y',
+  partSeparator: '.',
+  placeholder: {
+    year: 'rrrr',
+    month: 'mm',
+    day: 'dd',
+  },
+  translations: {
+    weekDays: ['pon', 'wto', 'śro', 'czw', 'pią', 'sob', 'nie'],
+    monthsLong: [
+      'styczeń',
+      'luty',
+      'marzec',
+      'kwiecień',
+      'maj',
+      'czerwiec',
+      'lipiec',
+      'sierpień',
+      'wrzesień',
+      'październik',
+      'listopad',
+      'grudzień',
+    ],
+    monthsShort: [
+      'sty',
+      'lut',
+      'mar',
+      'kwi',
+      'maj',
+      'cze',
+      'lip',
+      'sie',
+      'wrz',
+      'paź',
+      'lis',
+      'gru',
+    ],
+    today: 'Dzisiaj',
+    clear: 'Wyczyść',
+  },
+};
+
+export const settingsData: {
+  [key: string]: ISettings;
+} = {
+  'en-us': en,
+  en,
+  'bg-bg': bg,
+  bg,
+  'ar-ae': ar,
+  ar,
+  'pl-pl': pl,
+  pl,
+};

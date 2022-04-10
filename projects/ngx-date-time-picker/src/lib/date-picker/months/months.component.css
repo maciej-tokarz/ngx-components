@@ -1,0 +1,50 @@
+.container {
+  width: 196px;
+}
+
+.years {
+  height: 231px;
+  overflow-y: auto;
+}
+
+.year {
+  line-height: 24px;
+  padding-left: 6px;
+  background-color: rgb(230, 230, 230);
+  border-bottom: 1px solid rgb(177, 177, 177);
+  cursor: pointer;
+}
+
+.months {
+  background-color: white;
+  margin-left: -6px;
+  padding-left: 2px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.months > * {
+  flex: 1 0 21%;
+}
+
+.month {
+  line-height: 30px;
+  text-align: center;
+  font-size: 12px;
+}
+
+.selected {
+  background-color: #0a7bff;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.overed {
+  background-color: #0a7cff5b;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}

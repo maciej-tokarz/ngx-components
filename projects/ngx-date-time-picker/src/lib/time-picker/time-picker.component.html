@@ -1,0 +1,80 @@
+<div
+  class="container"
+  [style.width]="
+    clockType === 12
+      ? hasSeconds
+        ? type === 'time'
+          ? '116px'
+          : '102px'
+        : type === 'time'
+        ? '88px'
+        : '75px'
+      : hasSeconds
+      ? type === 'time'
+        ? '95px'
+        : '81px'
+      : type === 'time'
+      ? '68px'
+      : '54px'
+  "
+  [style.border]="type === 'time' ? '' : 'none'"
+  [style.outline]="type === 'time' ? '' : 'none'"
+>
+  <hour
+    #hourInput
+    [clockType]="clockType"
+    [showBackground]="showPanel"
+    [type]="type"
+    [(value)]="hour"
+    (keydown.arrowLeft)="focusOnPrevious()"
+    (keydown.arrowRight)="minuteInput.focus()"
+    (focusOnMinute)="minuteInput.focus()"
+  ></hour>
+  <div class="separator" (click)="hourInput.focus()">:</div>
+  <minute
+    #minuteInput
+    [(value)]="minute"
+    [hasSeconds]="hasSeconds"
+    [type]="type"
+    (keydown.arrowLeft)="hourInput.focus()"
+    (keydown.arrowRight)="hasSeconds ? setFocusOnSecond() : setFocusOnTime()"
+    (focusOnSecond)="setFocusOnSecond()"
+    (focusOnTime)="setFocusOnTime()"
+  ></minute>
+  <div class="separator" *ngIf="hasSeconds" (click)="hourInput.focus()">:</div>
+  <second
+    *ngIf="hasSeconds"
+    #secondInput
+    [type]="type"
+    [(value)]="second"
+    (keydown.arrowLeft)="minuteInput.focus()"
+    (keydown.arrowRight)="setFocusOnTime()"
+    (focusOnTime)="setFocusOnTime()"
+  ></second>
+  <div
+    *ngIf="clockType === 12"
+    class="separator"
+    (click)="hourInput.focus()"
+  ></div>
+  <time
+    #timeInput
+    *ngIf="clockType === 12"
+    [type]="type"
+    [(value)]="timeType"
+    (keydown.arrowLeft)="hasSeconds ? setFocusOnSecond() : minuteInput.focus()"
+  ></time>
+  <button
+    *ngIf="type === 'time'"
+    tabindex="-1"
+    (click)="showPanel = !showPanel; cd.detectChanges()"
+  ></button>
+</div>
+<time-panel
+  *ngIf="showPanel"
+  [type]="type"
+  [showSeconds]="hasSeconds"
+  [clockType]="clockType"
+  [show]="value"
+  (hidePanel)="showPanel = false; hourInput.focus(); cd.detectChanges()"
+  (timeChange)="value = $event; cd.detectChanges()"
+></time-panel>

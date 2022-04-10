@@ -1,0 +1,19 @@
+input {
+  width: 30px;
+  border: none;
+  font-family: monospace;
+  caret-color: transparent;
+  cursor: default;
+}
+
+input:focus {
+  outline: none;
+  background-color: #0a7bff;
+  color: white;
+}
+
+.background {
+  outline: none;
+  background-color: #0a7bff;
+  color: white;
+}

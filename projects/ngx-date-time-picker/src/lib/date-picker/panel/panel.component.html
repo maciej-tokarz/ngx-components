@@ -1,0 +1,49 @@
+<div #panel class="panel" [class.date-time]="type === 'date-time'">
+  <div class="commands">
+    <div
+      class="month-year"
+      (click)="showMonths = !showMonths; cd.detectChanges()"
+    >
+      {{ selectedMonthName }}
+      {{ selectedYear }}
+    </div>
+    <div class="triangle">&#9660;</div>
+    <div *ngIf="!showMonths" class="up-down">
+      <button (click)="nextMonth(false)">&#8593;</button>
+      <button (click)="nextMonth()">&#8595;</button>
+    </div>
+  </div>
+  <months
+    *ngIf="showMonths"
+    [settings]="settings"
+    [selectedYear]="selectedYear"
+    [selectedMonth]="selectedMonth"
+    (result)="setMonthsResult($event)"
+  ></months>
+  <div *ngIf="!showMonths" class="days">
+    <div
+      *ngFor="let weekDay of settings.translations.weekDays"
+      class="week-day"
+    >
+      {{ weekDay }}
+    </div>
+    <div
+      class="day"
+      *ngFor="let day of days"
+      [class.selected]="day === selectedDay"
+      [class.overed]="dayOvered === day && dayOvered !== selectedDay"
+      [class.outside-day]="isOutsideDay(day)"
+      (mouseover)="dayOvered = day; cd.detectChanges()"
+      (mouseout)="dayOvered = -1; cd.detectChanges()"
+      (click)="selectDay(day)"
+    >
+      {{ day | date: "d" }}
+    </div>
+  </div>
+  <div *ngIf="!showMonths" class="commands footer">
+    <button (click)="clear()">{{ settings?.translations.clear }}</button>
+    <button class="today" (click)="today()">
+      {{ settings.translations?.today }}
+    </button>
+  </div>
+</div>

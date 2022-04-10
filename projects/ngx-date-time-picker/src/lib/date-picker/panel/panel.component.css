@@ -1,0 +1,104 @@
+.panel {
+  height: 260px;
+  position: absolute;
+  z-index: 1;
+  background-color: white;
+  box-shadow: 0 0 10px gray;
+  border-radius: 3px;
+  padding: 10px;
+  font-family: "Segoe UI";
+  font-size: 12px;
+}
+
+.commands {
+  display: flex;
+  line-height: 28px;
+}
+
+.month-year {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.triangle {
+  font-size: 9px;
+  margin-left: 4px;
+}
+
+.up-down {
+  margin-left: auto;
+}
+
+button {
+  width: 28px;
+  height: 28px;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+}
+
+button:hover {
+  background-color: #0a7cff5b;
+  color: white;
+  cursor: pointer;
+}
+
+.days {
+  display: grid;
+  grid-template-columns: repeat(7, 28px);
+  grid-template-rows: 28px 28px 28px 28px 28px 28px 28px;
+}
+
+.week-day {
+  line-height: 28px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.day {
+  line-height: 28px;
+  text-align: center;
+}
+
+.outside-day {
+  color: gray;
+}
+
+.selected {
+  background-color: #0a7bff;
+  color: white;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.overed {
+  background-color: #0a7cff5b;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.footer {
+  margin-top: 4px;
+}
+
+.footer > button {
+  width: auto;
+  color: blue;
+}
+
+.footer > button:hover {
+  color: white;
+}
+
+.today {
+  margin-left: auto;
+  margin-right: 5px;
+}
+
+.date-time {
+  box-shadow: none;
+  border-right: solid 1px rgb(194, 194, 194);
+  border-radius: 4px 0 0 4px;
+}

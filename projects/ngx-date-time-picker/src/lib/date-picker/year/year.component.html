@@ -1,0 +1,9 @@
+<input
+  #input
+  spellcheck="false"
+  [value]="value"
+  [class.background]="showBackground"
+  (focus)="focused()"
+  (blur)="blured()"
+  (keydown)="onKeyDown($event)"
+/>
