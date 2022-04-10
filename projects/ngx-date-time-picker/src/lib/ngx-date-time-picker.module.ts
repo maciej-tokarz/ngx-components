@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import './prototypes';
 
@@ -7,7 +8,7 @@ import { DatePickerModule } from './date-picker/date-picker.module';
 
 @NgModule({
   declarations: [NgxDateTimePickerComponent],
-  imports: [DatePickerModule, TimePickerModule],
+  imports: [CommonModule, DatePickerModule, TimePickerModule],
   exports: [NgxDateTimePickerComponent],
 })
 export class NgxDateTimePickerModule {}

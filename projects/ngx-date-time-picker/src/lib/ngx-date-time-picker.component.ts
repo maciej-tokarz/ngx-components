@@ -23,7 +23,7 @@ import { ITime } from './interfaces';
   // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'ngx-date-time-picker',
   templateUrl: './ngx-date-time-picker.component.html',
-  styles: [],
+  styleUrls: ['./ngx-date-time-picker.component.css'],
 })
 export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
   private _initDate: string;

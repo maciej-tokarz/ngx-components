@@ -8,9 +8,8 @@ describe('NgxDateTimePickerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NgxDateTimePickerComponent ]
-    })
-    .compileComponents();
+      declarations: [NgxDateTimePickerComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
