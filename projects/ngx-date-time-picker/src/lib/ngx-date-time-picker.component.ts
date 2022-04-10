@@ -20,7 +20,8 @@ import { getSettings } from './settings';
 import { ITime } from './interfaces';
 
 @Component({
-  selector: 'lib-ngx-date-time-picker',
+  // eslint-disable-next-line @angular-eslint/component-selector
+  selector: 'ngx-date-time-picker',
   templateUrl: './ngx-date-time-picker.component.html',
   styles: [],
 })
