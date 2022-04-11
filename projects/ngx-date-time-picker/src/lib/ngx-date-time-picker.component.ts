@@ -160,11 +160,7 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
       (this.seconds === '' && value.second === '--') ||
       (this.clockType === 12 && value.type === '--');
 
-    const toEmit = isIncomplete
-      ? ''
-      : `${value.hour.pad()}:${value.minute.pad()}${
-          this.seconds === '' ? ':' + value.second.pad() : ''
-        }`;
+    const toEmit = isIncomplete ? '' : this._getTimeToEmit(value);
 
     if (this._lastEmmitedTime === toEmit) {
       return;
@@ -172,6 +168,19 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
 
     this._lastEmmitedTime = toEmit;
     this.type === 'time' ? this.change.emit(toEmit) : this._emitDateTime();
+  }
+
+  private _getTimeToEmit(value: ITime): string {
+    value.hour =
+      value.type === 'PM'
+        ? Number(value.hour) !== 12
+          ? String(Number(value.hour) + 12)
+          : '00'
+        : value.hour;
+
+    return `${value.hour.pad()}:${value.minute.pad()}${
+      this.seconds === '' ? ':' + value.second.pad() : ''
+    }`;
   }
 
   private _setDateTimeInitData(): void {
