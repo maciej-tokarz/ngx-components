@@ -272,10 +272,6 @@ export class DatePickerComponent implements AfterViewInit, OnDestroy {
   }
 
   private _emitValue(): void {
-    if (Number(this.year) < 1000) {
-      this.year = '1000';
-    }
-
     const date = new Date(
       Number(this.year),
       Number(this.month) - 1,

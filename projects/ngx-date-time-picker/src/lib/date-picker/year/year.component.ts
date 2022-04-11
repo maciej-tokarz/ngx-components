@@ -154,6 +154,10 @@ export class YearComponent {
   }
 
   private _emitValueChange(): void {
+    if (Number(this.value) < 1000) {
+      return;
+    }
+
     this.valueChange.emit(this.value);
     this._cd.detectChanges();
   }
