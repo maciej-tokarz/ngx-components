@@ -126,7 +126,10 @@ export class YearComponent {
       this._keyCounter = 0;
     }
 
-    if (this._keyCounter === 0 && this.value === 'rrrr') {
+    if (
+      this._keyCounter === 0 &&
+      this.value === this.settings.placeholder.year
+    ) {
       front = '000';
     }
 

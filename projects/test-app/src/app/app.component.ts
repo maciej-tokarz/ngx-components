@@ -6,13 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  initValue = '1970-03-21T05:20:03';
+  initValue = new Date();
 
   showChanges(value: string): void {
     console.log('Changed value', value);
-  }
-
-  getDate(): Date {
-    return new Date();
   }
 }
