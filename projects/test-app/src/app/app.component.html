@@ -1,0 +1,161 @@
+<header>
+  <h3>Date Time Picker</h3>
+</header>
+<div class="container">
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        seconds
+        type="date-time"
+        locale="en-US"
+        [value]="getDate()"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        seconds
+        type="date-time"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        type="date-time"
+        locale="pl-PL"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        seconds
+        type="date"
+        locale="en-US"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        seconds
+        type="date"
+        locale="pl-PL"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        locale="en-US"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        seconds
+        locale="en-US"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        locale="en-US"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        seconds
+        locale="en-US"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        locale="pl-PL"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        seconds
+        locale="pl-PL"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="examples">
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        locale="pl-PL"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+    <div class="example">
+      <ngx-date-time-picker
+        type="time"
+        seconds
+        locale="pl-PL"
+        [value]="initValue"
+        (change)="showChanges($event)"
+      ></ngx-date-time-picker>
+    </div>
+  </div>
+  <div class="text">
+    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+    Lorem Ipsum has been the industry's standard dummy text ever since the
+    1500s, when an unknown printer took a galley of type and scrambled it to
+    make a type specimen book. It has survived not only five centuries, but also
+    the leap into electronic typesetting, remaining essentially unchanged.
+  </div>
+  <br />
+  <div class="example" style="margin-top: 10px">
+    <div style="margin-bottom: -16px">Original time</div>
+    <input
+      type="time"
+      style="margin-top: 20px"
+      (change)="showChanges($any($event).target.value)"
+    />
+    <input
+      type="time"
+      style="margin: 20px 0 0 20px"
+      [step]="1"
+      (change)="showChanges($any($event).target.value)"
+    />
+  </div>
+  <div class="example">
+    <div style="margin-bottom: -16px">Original date</div>
+    <input
+      type="date"
+      style="margin-top: 20px"
+      (change)="showChanges($any($event).target.value)"
+    />
+  </div>
+  <div class="example">
+    <div style="margin-bottom: -16px">Original date time</div>
+    <input
+      [step]="1"
+      type="datetime-local"
+      style="margin-top: 20px"
+      (change)="showChanges($any($event).target.value)"
+    />
+  </div>
+</div>

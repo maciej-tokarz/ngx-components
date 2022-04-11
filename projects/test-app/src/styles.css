@@ -1,0 +1,13 @@
+html,
+body {
+  overflow: hidden;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  margin: 0;
+}
+
+header {
+  padding: 1px 20px 1px 20px;
+  background: #dd0031ff;
+  color: white;
+}
