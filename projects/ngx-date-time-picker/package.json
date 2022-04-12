@@ -1,6 +1,6 @@
 {
   "name": "@my-poi/ngx-date-time-picker",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "author": "Maciej Tokarz <maciej.tokarz@my-poi.pl> (https://my-poi.pl/)",
   "license": "MIT",
   "private": false,
@@ -12,6 +12,7 @@
     "url": "git+https://github.com/maciej-tokarz/ngx-components.git"
   },
   "keywords": [
+    "angular",
     "date",
     "time",
     "picker"
