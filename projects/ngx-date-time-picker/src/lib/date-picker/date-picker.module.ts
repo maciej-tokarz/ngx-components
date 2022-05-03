@@ -12,9 +12,9 @@ import { DayComponent } from './day/day.component';
   imports: [CommonModule],
   declarations: [
     DatePickerComponent,
+    DatePanelComponent,
     MonthsComponent,
     MonthComponent,
-    DatePanelComponent,
     YearComponent,
     DayComponent,
   ],

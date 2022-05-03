@@ -9,9 +9,6 @@ export interface ISettings {
     day: string;
   };
   translations: {
-    weekDays: string[];
-    monthsLong: string[];
-    monthsShort: string[];
     today: string;
     clear: string;
   };

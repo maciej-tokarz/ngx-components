@@ -263,7 +263,7 @@ export class DatePickerComponent implements AfterViewInit, OnDestroy {
     }
   }
 
-  isClear(): boolean {
+  isNotComplete(): boolean {
     return (
       this.year === this.settings.placeholder.year ||
       this.month === this.settings.placeholder.month ||
@@ -283,7 +283,7 @@ export class DatePickerComponent implements AfterViewInit, OnDestroy {
       Number(this.month) - 1 === date.getMonth() &&
       Number(this.day) === date.getDate();
 
-    if (!isValid && !this.isClear()) {
+    if (!isValid && !this.isNotComplete()) {
       return;
     }
 

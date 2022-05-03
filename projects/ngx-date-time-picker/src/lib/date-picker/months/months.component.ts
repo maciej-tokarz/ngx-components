@@ -10,6 +10,7 @@ import {
 } from '@angular/core';
 
 import { ISettings, IYearMonth } from '../../interfaces';
+import { SettingsService } from '../../settings.service';
 
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
@@ -21,6 +22,7 @@ export class MonthsComponent implements AfterViewInit {
   years: number[] = [];
   inputtedYear: number;
   monthOvered: number;
+  monthsShort = this._settingsService.getMonthsShort();
 
   @Input() settings: ISettings;
   @Input() selectedYear: number;
@@ -29,7 +31,10 @@ export class MonthsComponent implements AfterViewInit {
   @Output() result = new EventEmitter<IYearMonth>();
   @ViewChild('yearsContainer') private _yearsContainer: ElementRef;
 
-  constructor(public cd: ChangeDetectorRef) {}
+  constructor(
+    private _settingsService: SettingsService,
+    public cd: ChangeDetectorRef
+  ) {}
 
   ngAfterViewInit(): void {
     this.inputtedYear = this.selectedYear;
@@ -49,7 +54,7 @@ export class MonthsComponent implements AfterViewInit {
   selectMonth(month: string): void {
     this.result.emit({
       year: this.selectedYear,
-      month: this.settings.translations.monthsShort.indexOf(month),
+      month: this.monthsShort.indexOf(month),
     });
   }
 
