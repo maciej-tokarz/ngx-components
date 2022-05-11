@@ -20,7 +20,7 @@ export class MinuteComponent {
   private _keyCounter = 0;
 
   @Input() value = '--';
-  @Input() hasSeconds: boolean;
+  @Input() seconds: boolean;
   @Input() type: InputType;
   @Output() valueChange = new EventEmitter<string>();
   @Output() focusOnSecond = new EventEmitter<void>();
@@ -107,7 +107,7 @@ export class MinuteComponent {
     this._emitValueChange();
 
     if (this._keyCounter === 1) {
-      this.hasSeconds ? this.focusOnSecond.emit() : this.focusOnTime.emit();
+      this.seconds ? this.focusOnSecond.emit() : this.focusOnTime.emit();
     }
 
     this._keyCounter += 1;

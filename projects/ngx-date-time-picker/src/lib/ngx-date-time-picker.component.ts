@@ -189,6 +189,10 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
     }`;
   }
 
+  emitDateTime(value: string): void {
+    console.log('emitDateTime', value);
+  }
+
   private _setDateTimeInitData(): void {
     this._initDate = this._datePicker.value;
     this._selectedYear = this._datePanel.selectedYear;

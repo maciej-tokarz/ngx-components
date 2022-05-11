@@ -59,7 +59,7 @@ export class TimePickerComponent {
     return this._timeType;
   }
 
-  @Input() hasSeconds: boolean;
+  @Input() seconds: boolean;
   @Input() clockType: ClockType;
   @Input() set value(value: ITime) {
     if (value) {

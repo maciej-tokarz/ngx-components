@@ -2,14 +2,14 @@
   class="container"
   [style.width]="
     clockType === 12
-      ? hasSeconds
+      ? seconds
         ? type === 'time'
           ? '116px'
           : '102px'
         : type === 'time'
         ? '88px'
         : '75px'
-      : hasSeconds
+      : seconds
       ? type === 'time'
         ? '95px'
         : '81px'
@@ -34,16 +34,16 @@
   <minute
     #minuteInput
     [(value)]="minute"
-    [hasSeconds]="hasSeconds"
+    [seconds]="seconds"
     [type]="type"
     (keydown.arrowLeft)="hourInput.focus()"
-    (keydown.arrowRight)="hasSeconds ? setFocusOnSecond() : setFocusOnTime()"
+    (keydown.arrowRight)="seconds ? setFocusOnSecond() : setFocusOnTime()"
     (focusOnSecond)="setFocusOnSecond()"
     (focusOnTime)="setFocusOnTime()"
   ></minute>
-  <div class="separator" *ngIf="hasSeconds" (click)="hourInput.focus()">:</div>
+  <div class="separator" *ngIf="seconds" (click)="hourInput.focus()">:</div>
   <second
-    *ngIf="hasSeconds"
+    *ngIf="seconds"
     #secondInput
     [type]="type"
     [(value)]="second"
@@ -61,7 +61,7 @@
     *ngIf="clockType === 12"
     [type]="type"
     [(value)]="timeType"
-    (keydown.arrowLeft)="hasSeconds ? setFocusOnSecond() : minuteInput.focus()"
+    (keydown.arrowLeft)="seconds ? setFocusOnSecond() : minuteInput.focus()"
   ></time>
   <button
     *ngIf="type === 'time'"
@@ -72,7 +72,7 @@
 <time-panel
   *ngIf="showPanel"
   [type]="type"
-  [showSeconds]="hasSeconds"
+  [showSeconds]="seconds"
   [clockType]="clockType"
   [show]="value"
   (hidePanel)="showPanel = false; hourInput.focus(); cd.detectChanges()"
