@@ -21,10 +21,7 @@
     (result)="setMonthsResult($event)"
   ></months>
   <div *ngIf="!showMonths" class="days">
-    <div
-      *ngFor="let weekDay of settings.translations.weekDays"
-      class="week-day"
-    >
+    <div *ngFor="let weekDay of weekdaysMin" class="week-day">
       {{ weekDay }}
     </div>
     <div

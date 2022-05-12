@@ -16,7 +16,7 @@ import { TimePickerComponent } from './time-picker/time-picker.component';
 import { DatePanelComponent } from './date-picker/panel/panel.component';
 import { TimePanelComponent } from './time-picker/panel/panel.component';
 import { ClockType, InputType, TimeType } from './types';
-import { getSettings } from './settings';
+import { SettingsService } from './settings.service';
 import { ITime } from './interfaces';
 
 @Component({
@@ -24,6 +24,7 @@ import { ITime } from './interfaces';
   selector: 'ngx-date-time-picker',
   templateUrl: './ngx-date-time-picker.component.html',
   styleUrls: ['./ngx-date-time-picker.component.css'],
+  providers: [SettingsService],
 })
 export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
   private _initDate: string;
@@ -43,7 +44,7 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
   clockType = this._getBrowserClockType();
   internalDate: string;
   internalTime: ITime;
-  settings = getSettings(navigator.language);
+  settings = this._settingsService.getSettings();
   dateTimePanelShowed = false;
   documentMouseDown = this._documentMouseDown.bind(this);
 
@@ -69,10 +70,15 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
     @Attribute('seconds') public seconds: string,
     @Attribute('locale') private _locale: string,
     @Attribute('type') public type: InputType,
+    private _settingsService: SettingsService,
     public cd: ChangeDetectorRef
   ) {
+    this._settingsService.seconds = seconds !== null;
+    this._settingsService.type = type;
+
     if (this._locale) {
-      this.settings = getSettings(this._locale);
+      this._settingsService.locale = this._locale;
+      this.settings = this._settingsService.getSettings();
       this._setClockType(this._locale);
     }
   }
@@ -118,7 +124,7 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
       (this._initDate === this._datePicker.value &&
         JSON.stringify(this._initTime) ===
           JSON.stringify(this._timePicker.value)) ||
-      (this._initDate === undefined && this._datePicker.isClear())
+      (this._initDate === undefined && this._datePicker.isNotComplete())
     ) {
       this._hideDateTimePanel();
       return;
@@ -183,6 +189,10 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
     }`;
   }
 
+  emitDateTime(value: string): void {
+    console.log('emitDateTime', value);
+  }
+
   private _setDateTimeInitData(): void {
     this._initDate = this._datePicker.value;
     this._selectedYear = this._datePanel.selectedYear;
@@ -232,7 +242,7 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
   }
 
   private _setDateIfEmpty(): void {
-    if (this._datePicker.isClear()) {
+    if (this._datePicker.isNotComplete()) {
       const date = new Date();
       this.internalDate = `${date.getFullYear()}-${String(
         date.getMonth() + 1
@@ -271,11 +281,15 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
   }
 
   private _emitDateTime(): void {
-    let dateTime = `${this._lastEmmitedDate}T${this._lastEmmitedTime}`;
+    if (!this._timePicker) {
+      return;
+    }
 
-    const isValid = dateTime.length === 19 || dateTime.length === 16;
+    let dateTime = `${this._datePicker.value}T${this._getTimeToEmit(
+      this._timePicker.value
+    )}`;
 
-    if (!isValid) {
+    if (this._datePicker.isNotComplete() || !this._timeIsValid()) {
       dateTime = '';
     }
 
@@ -285,6 +299,15 @@ export class NgxDateTimePickerComponent implements AfterViewInit, OnDestroy {
 
     this._lastEmmitedDateTime = dateTime;
     this.change.emit(dateTime);
+  }
+
+  private _timeIsValid(): boolean {
+    return this.seconds !== null
+      ? this._timePicker.value.hour !== '--' &&
+          this._timePicker.value.minute !== '--' &&
+          this._timePicker.value.second !== '--'
+      : this._timePicker.value.hour !== '--' &&
+          this._timePicker.value.minute !== '--';
   }
 
   private _setClockType(locale: string): void {

@@ -11,6 +11,7 @@ import {
 } from '@angular/core';
 
 import { ISettings, IYearMonth } from '../../interfaces';
+import { SettingsService } from '../../settings.service';
 import { InputType } from '../../types';
 
 @Component({
@@ -34,6 +35,8 @@ export class DatePanelComponent implements AfterViewInit, OnDestroy {
   selectedDay: number;
   days: number[];
   dayOvered: number = -1;
+  weekdaysMin = this._settingsService.getWeekdaysMin();
+  months = this._settingsService.getMonths();
   documentMouseDown = this._documentMouseDown.bind(this);
   documentKeyDown = this._documentKeyDown.bind(this);
 
@@ -61,7 +64,10 @@ export class DatePanelComponent implements AfterViewInit, OnDestroy {
   @Output() dateTimeClear = new EventEmitter<void>();
   @ViewChild('panel') private _panel: ElementRef;
 
-  constructor(public cd: ChangeDetectorRef) {
+  constructor(
+    private _settingsService: SettingsService,
+    public cd: ChangeDetectorRef
+  ) {
     document.addEventListener('keydown', this.documentKeyDown);
   }
 
@@ -168,7 +174,7 @@ export class DatePanelComponent implements AfterViewInit, OnDestroy {
     this.selectedDay = currentDay.getTime();
     this.selectedMonth = currentDay.getMonth();
     this.selectedMonthName =
-      this.settings.translations.monthsLong[this.selectedMonth];
+      this._settingsService.getMonths()[this.selectedMonth];
     this.selectedYear = currentDay.getFullYear();
 
     this._setInitValues();

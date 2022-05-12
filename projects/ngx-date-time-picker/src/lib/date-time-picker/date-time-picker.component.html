@@ -1,0 +1,55 @@
+<div class="container">
+  <date-picker
+    #datePicker
+    [type]="type"
+    [settings]="settings"
+    [value]="internalDate"
+    [dateTimePanelShowed]="dateTimePanelShowed"
+    (valueChange)="emitDate($event)"
+  ></date-picker>
+  <time-picker
+    #timePicker
+    [type]="type"
+    [seconds]="seconds"
+    [clockType]="clockType"
+    [value]="internalTime"
+    (valueChange)="emitTime($event)"
+  ></time-picker>
+  <button tabindex="-1" (click)="showDateTimePanel()"></button>
+  <div
+    #panel
+    *ngIf="dateTimePanelShowed"
+    class="panel"
+    [style.width]="
+      clockType === 12
+        ? timePicker.seconds
+          ? '444px'
+          : '389px'
+        : timePicker.seconds
+        ? '389px'
+        : '336px'
+    "
+  >
+    <date-panel
+      #datePanel
+      *ngIf="dateTimePanelShowed"
+      [settings]="settings"
+      [show]="datePicker.value"
+      [type]="type"
+      [dateTimePanelShowed]="dateTimePanelShowed"
+      (dateChange)="dateChange($event)"
+      (dateTimeClear)="dateTimeClear()"
+    ></date-panel>
+    <time-panel
+      #timePanel
+      class="time-panel"
+      *ngIf="dateTimePanelShowed"
+      [type]="type"
+      [showSeconds]="timePicker.seconds"
+      [clockType]="clockType"
+      [show]="timePicker.value"
+      (hidePanel)="hideDateTimePanel($event)"
+      (timeChange)="timeChange($event)"
+    ></time-panel>
+  </div>
+</div>

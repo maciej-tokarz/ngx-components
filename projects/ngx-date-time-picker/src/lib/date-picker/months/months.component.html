@@ -8,20 +8,19 @@
     >
       {{ year }}
       <div *ngIf="year === selectedYear" class="months">
-        <div *ngFor="let month of settings.translations.monthsShort">
+        <div *ngFor="let month of monthsShort">
           <div
             class="month"
             [class.selected]="
               selectedYear === inputtedYear &&
-              settings.translations.monthsShort.indexOf(month) === selectedMonth
+              monthsShort.indexOf(month) === selectedMonth
             "
             [class.overed]="
               monthOvered !== selectedMonth &&
-              monthOvered === settings.translations.monthsShort.indexOf(month)
+              monthOvered === monthsShort.indexOf(month)
             "
             (mouseover)="
-              monthOvered = settings.translations.monthsShort.indexOf(month);
-              cd.detectChanges()
+              monthOvered = monthsShort.indexOf(month); cd.detectChanges()
             "
             (click)="selectMonth(month)"
           >
